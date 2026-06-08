@@ -2,9 +2,9 @@
   "name": "the-indexer-celo-node",
   "version": "1.0.0",
   "description": "Mock indexer node client for Celo IndexerRegistry",
-  "main": "src/indexer-node.js",
+  "main": "frontend/indexer-node.js",
   "scripts": {
-    "start": "node src/indexer-node.js"
+    "start": "node frontend/indexer-node.js"
   },
   "author": "rindicomfort",
   "license": "MIT",

@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {Test, console} from "forge-std/Test.sol";
-import {IndexerRegistry} from "../src/IndexerRegistry.sol";
+import {IndexerRegistry} from "../contracts/IndexerRegistry.sol";
 
 contract IndexerRegistryTest is Test {
     IndexerRegistry public registry;
