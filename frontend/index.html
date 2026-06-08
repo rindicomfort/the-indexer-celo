@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Indexer - Celo Dashboard</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+  <div class="glow-bg"></div>
+  
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <span class="gradient-text">THE INDEXER</span>
+        <span class="badge celo-badge">Celo Protocol</span>
+      </div>
+      <div class="wallet-btn-container">
+        <button id="connect-wallet" class="btn btn-primary">Connect Celo Wallet</button>
+        <span id="wallet-address" class="wallet-address hidden"></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Network Stats -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Registered Indexers</h3>
+        <p id="total-indexers" class="stat-value">5</p>
+      </div>
+      <div class="stat-card">
+        <h3>Total Active Queries</h3>
+        <p id="active-queries" class="stat-value">12</p>
+      </div>
+      <div class="stat-card">
+        <h3>Total CELO Locked</h3>
+        <p id="total-stx-locked" class="stat-value">14,500 CELO</p>
+      </div>
+      <div class="stat-card">
+        <h3>Minimum Stake</h3>
+        <p class="stat-value">100 CELO</p>
+      </div>
+    </section>
+
+    <!-- Main Workspace -->
+    <div class="workspace-grid">
+      
+      <!-- Left side: Actions -->
+      <div class="workspace-actions">
+        <!-- Indexer Registration -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Register as Indexer</h2>
+            <span class="card-subtitle">Stake CELO to join the indexing network</span>
+          </div>
+          <form id="register-form">
+            <div class="form-group">
+              <label for="endpoint">API Endpoint URL</label>
+              <input type="url" id="endpoint" placeholder="https://your-node.com/api" required>
+            </div>
+            <div class="form-group">
+              <label for="stake-amount">Stake Amount (CELO)</label>
+              <input type="number" id="stake-amount" min="100" value="100" required>
+            </div>
+            <button type="submit" class="btn btn-accent btn-full">Register & Stake</button>
+          </form>
+        </div>
+
+        <!-- Query Request -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Request Data Indexing</h2>
+            <span class="card-subtitle">Lock rewards to fetch blockchain state</span>
+          </div>
+          <form id="query-form">
+            <div class="form-group">
+              <label for="query-target">Target Query Hash (bytes32)</label>
+              <input type="text" id="query-target" placeholder="0xe3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" required>
+            </div>
+            <div class="form-group">
+              <label for="query-reward">Reward Amount (CELO)</label>
+              <input type="number" id="query-reward" min="1" value="10" required>
+            </div>
+            <button type="submit" class="btn btn-secondary btn-full">Submit Request</button>
+          </form>
+        </div>
+
+        <!-- Owner Slashing Panel -->
+        <div class="card owner-only">
+          <div class="card-header">
+            <h2>Protocol Slashing (Owner Only)</h2>
+            <span class="card-subtitle">Deactivate and slash offline/malicious indexers</span>
+          </div>
+          <form id="slash-form">
+            <div class="form-group">
+              <label for="slash-target">Indexer Address</label>
+              <input type="text" id="slash-target" placeholder="0x1111..." required>
+            </div>
+            <button type="submit" class="btn btn-danger btn-full">Slash Indexer (50 CELO)</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right side: Registry lists & Query feeds -->
+      <div class="workspace-data">
+        
+        <!-- Indexers List -->
+        <div class="card card-table">
+          <div class="card-header">
+            <h2>Registered Indexers</h2>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Indexer Address</th>
+                  <th>API Endpoint</th>
+                  <th>Staked Amount</th>
+                  <th>Rating</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="indexers-table-body">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Queries Feed -->
+        <div class="card card-table">
+          <div class="card-header">
+            <h2>Active Query Requests</h2>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Requester</th>
+                  <th>Reward</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="queries-table-body">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="container">
+    <p>&copy; 2026 The Indexer. Built on Celo Blockchain using Solidity. Author: <a href="mailto:kwarpojonathanrindi@gmail.com" class="link">rindicomfort</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
